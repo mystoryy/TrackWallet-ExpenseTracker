@@ -15,7 +15,7 @@ public class ExpenseTrackerApp {
 
     private static Scanner sc = new Scanner(System.in);
 
-    // runs the ExpenseTrackerApp
+    //EFFECTS: runs the ExpenseTrackerApp
     public ExpenseTrackerApp() {
         expenseTracker = new ExpenseTracker();
         runExpenseTrackerApp();
@@ -24,19 +24,22 @@ public class ExpenseTrackerApp {
     //MODIFIES: this
     //EFFECTS: processes user input
     public void runExpenseTrackerApp() {
+        System.out.println("Welcome to the Expense Tracker App \n");
         String input = "none";
         while (!input.equals("e")) {
             printMenu();
             input = sc.next();
             navigator(input);
         }
-        if (!input.equals("e")) {
+        if (input.equals("e")) {
+            System.out.println("\nBye-Bye");
             System.exit(0);
-        }
 
+        }
     }
+
     //MODIFIES: this
-    //EFFECTS: navigates and processes the user input
+    //EFFECTS: navigates and processes the user input to do the functions
 
     public void navigator(String sc) {
         if (sc.equals("1")) {
@@ -51,16 +54,13 @@ public class ExpenseTrackerApp {
             removeIncome();
         } else if (sc.equals("6")) {
             removeExpenses();
-//        } else if (sc.equals("7")) {
-//            editIncome();
-//        } else if (sc.equals("8")) {
-//            editExpenses();
-        } else if (sc.equals("9")) {
+        } else if (sc.equals("7")) {
             viewCategoryWise();
         } else if (sc.equals("s")) {
             viewSavings();
         }
     }
+
 
     //EFFECTS: displays the options menu to the user
     public void printMenu() {
@@ -70,15 +70,13 @@ public class ExpenseTrackerApp {
         System.out.println("Enter 4 to view Expenses");
         System.out.println("Enter 5 to remove Income");
         System.out.println("Enter 6 to remove Expenses");
-//        System.out.println("Enter 7 to Edit Income");
-//        System.out.println("Enter 8 to Edit Expenses");
-        System.out.println("Enter 9 to view category wise Expenses");
+        System.out.println("Enter 7 to view category wise Expenses");
         System.out.println("Enter s to view savings");
-        System.out.println("Type e to exit");
+        System.out.println("Enter e to exit");
     }
 
 
-    //MODIFIES: this
+    //MODIFIES: this,income list
     //EFFECTS: adds income with amount and description to the income list
 
     private void addIncome() {
@@ -93,7 +91,7 @@ public class ExpenseTrackerApp {
         System.out.println("Income is added successfully");
         System.out.println("\n\n");
     }
-    //MODIFIES: this
+    //MODIFIES: this,expense list
     //EFFECTS: adds expenses with amount,date,category and description to the expense list and gives expenseID to each
     //         expense added to the list
 
@@ -108,7 +106,7 @@ public class ExpenseTrackerApp {
         String description = sc.next();
 
         Expenses expense = new Expenses(expenseTracker.getNumberOfExpenses() + 1, expenseAmount, date,
-                            category, description);
+                category, description);
         expenseTracker.addExpenses(expense);
         System.out.println("Expense added successfully \n\n");
 
@@ -117,11 +115,11 @@ public class ExpenseTrackerApp {
 
     private void viewIncome() {
 
-        System.out.println("       INCOME    ");
-        System.out.println("\n========================================================================");
+        System.out.println("                                INCOME                                   ");
+        System.out.println("========================================================================");
         for (Income income : expenseTracker.getIncomeList()) {
             System.out.println("Income ID: " + income.getIncomeID() + "\n" + "Amount: $" + income.getIncomeAmount()
-                    + "\n" + "Description: " + income.getDescription() + "\n\n");
+                    + "\n" + "Description: " + income.getDescription() + "\n");
         }
         viewTotalIncome();
         String formatIncome = String.format("%.2f", totalIncome);
@@ -134,7 +132,7 @@ public class ExpenseTrackerApp {
 
     private void viewExpenses() {
 
-        System.out.println(" \n         EXPENSE     ");
+        System.out.println(" \n                           EXPENSES                                ");
         System.out.println("======================================================================");
 
         for (Expenses expenses : expenseTracker.getExpensesList()) {
@@ -158,9 +156,9 @@ public class ExpenseTrackerApp {
         int incomeID = sc.nextInt();
         if (expenseTracker.removeIncome(incomeID)) {
             expenseTracker.removeIncome(incomeID);
-            System.out.println("Income deleted successfully");
+            System.out.println("Income deleted successfully \n");
         } else {
-            System.out.println("Enter a correct income ID");
+            System.out.println("Enter a correct income ID \n");
         }
 
     }
@@ -172,27 +170,26 @@ public class ExpenseTrackerApp {
         int id = sc.nextInt();
         if (expenseTracker.removeExpense(id)) {
             expenseTracker.removeExpense(id);
-            System.out.println("Expense with given ID is deleted");
+            System.out.println("Expense with given ID is deleted \n");
         } else {
-            System.out.println("Enter a correct expense ID");
+            System.out.println("Enter a correct expense ID \n");
         }
     }
 
-    //EFFECTS: displays the expenses with the preferred category in the the expense list
+    //MODIFIES: this
+    //EFFECTS: displays the expenses with the preferred category in the expense list
 
     private void viewCategoryWise() {
         System.out.println("\n Enter the Category to view expenses in: ");
         String category = sc.next();
-        System.out.println("\n========Expenses for "  + category + " Category========");
+        System.out.println("\n===============Expenses for " + category + " Category==============");
         for (Expenses expense : expenseTracker.getExpensesList()) {
             if (expense.getCategory().equalsIgnoreCase(category)) {
                 System.out.println("Expense ID: " + expense.getId() + "\n" + "Amount: $" + expense.getAmount() + "\n"
                         + "Date: " + expense.getDate()
                         + "\n" + "Category: " + expense.getCategory() + "\n" + "Description: " + expense.getDecription()
                         + "\n");
-                //totalExpenditure += expense.getAmount();
-               // String formatExpense = String.format("%.2f",totalExpenditure);
-               // System.out.println("Total Expenditure for " + category + " Category is: $" + formatExpense);
+
             }
 
         }
@@ -214,7 +211,7 @@ public class ExpenseTrackerApp {
 
     private void viewTotalIncome() {
         this.totalIncome = 0;
-        for (Income income: expenseTracker.getIncomeList()) {
+        for (Income income : expenseTracker.getIncomeList()) {
             totalIncome += income.getIncomeAmount();
         }
     }
@@ -226,28 +223,13 @@ public class ExpenseTrackerApp {
         viewTotalExpenditure();
 
         double savings = totalIncome - totalExpenditure;
-        String formatIncome = String.format("%.2f",savings);
+        String formatIncome = String.format("%.2f", savings);
+        System.out.println("\n===============================\n");
         System.out.println("Your Savings Are: " + "$" + formatIncome + "\n");
+        System.out.println("===============================\n");
     }
 
-    //private static void editIncome() {
-
-   // }
-
-    //private static void editExpenses() {
-    //}
-
-
-
-
-
-
-
-
-
 }
-
-
 
 
 

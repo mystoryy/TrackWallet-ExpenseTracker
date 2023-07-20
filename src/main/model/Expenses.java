@@ -10,10 +10,10 @@ public class Expenses {
     private String category;
     private String decription;
 
-    //MODIFIES: this
+
     //EFFECTS: constructs an expense with an ID,date, decription ,category and amount
 
-    public Expenses(int expenseId,double amount,String date,String category,String description) {
+    public Expenses(int expenseId, double amount, String date, String category, String description) {
         this.expenseId = expenseId;
         this.amount = amount;
         this.category = category;
@@ -24,6 +24,7 @@ public class Expenses {
     public double getAmount() {
         return amount;
     }
+
 
     public int getId() {
         return expenseId;
@@ -37,8 +38,10 @@ public class Expenses {
         return date;
     }
 
+
     public String getDecription() {
         return decription;
     }
+
 }
 
