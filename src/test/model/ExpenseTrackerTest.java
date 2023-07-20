@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ExpenseTrackerTest {
     private ExpenseTracker testExpenseTracker;
@@ -95,10 +95,11 @@ public class ExpenseTrackerTest {
         assertEquals(3, testExpenseTracker.getNumberOfExpenses());
         assertEquals(expense3, testExpenseTracker.getExpensesList().get(2));
 
-        testExpenseTracker.removeExpense(2);
+        Boolean remove = testExpenseTracker.removeExpense(2);
         assertEquals(2, testExpenseTracker.getNumberOfExpenses());
         assertEquals(expense1, testExpenseTracker.getExpensesList().get(0));
         assertEquals(expense3, testExpenseTracker.getExpensesList().get(1));
+        assertTrue(remove);
     }
 
     @Test
@@ -115,14 +116,27 @@ public class ExpenseTrackerTest {
         assertEquals(3, testExpenseTracker.getNumberOfExpenses());
         assertEquals(expense3, testExpenseTracker.getExpensesList().get(2));
 
-        testExpenseTracker.removeExpense(2);
+        Boolean remove1 = testExpenseTracker.removeExpense(2);
         assertEquals(2, testExpenseTracker.getNumberOfExpenses());
         assertEquals(expense1, testExpenseTracker.getExpensesList().get(0));
         assertEquals(expense3, testExpenseTracker.getExpensesList().get(1));
+        assertTrue(remove1);
 
-        testExpenseTracker.removeExpense(1);
+        Boolean remove2 = testExpenseTracker.removeExpense(1);
         assertEquals(1, testExpenseTracker.getNumberOfExpenses());
         assertEquals(expense3, testExpenseTracker.getExpensesList().get(0));
+        assertTrue(remove2);
+
+
+        Boolean remove3 = testExpenseTracker.removeExpense(2);
+        assertEquals(1, testExpenseTracker.getNumberOfExpenses());
+        assertEquals(expense3, testExpenseTracker.getExpensesList().get(0));
+        assertFalse(remove3);
+
+        Boolean remove4 = testExpenseTracker.removeExpense(4);
+        assertEquals(1, testExpenseTracker.getNumberOfExpenses());
+        assertEquals(expense3, testExpenseTracker.getExpensesList().get(0));
+        assertFalse(remove4);
     }
 
     @Test
@@ -139,10 +153,11 @@ public class ExpenseTrackerTest {
         assertEquals(3, testExpenseTracker.getNumberOfIncome());
         assertEquals(income3, testExpenseTracker.getIncomeList().get(2));
 
-        testExpenseTracker.removeIncome(4);
+        Boolean remove = testExpenseTracker.removeIncome(4);
         assertEquals(2, testExpenseTracker.getNumberOfIncome());
         assertEquals(income1, testExpenseTracker.getIncomeList().get(0));
         assertEquals(income3, testExpenseTracker.getIncomeList().get(1));
+        assertTrue(remove);
     }
 
     @Test
@@ -159,15 +174,27 @@ public class ExpenseTrackerTest {
         assertEquals(3, testExpenseTracker.getNumberOfIncome());
         assertEquals(income3, testExpenseTracker.getIncomeList().get(2));
 
-        testExpenseTracker.removeIncome(2);
+        Boolean remove1 = testExpenseTracker.removeIncome(2);
         assertEquals(2, testExpenseTracker.getNumberOfIncome());
         assertEquals(income2, testExpenseTracker.getIncomeList().get(0));
         assertEquals(income3, testExpenseTracker.getIncomeList().get(1));
+        assertTrue(remove1);
 
-        testExpenseTracker.removeIncome(3);
+        Boolean remove2 = testExpenseTracker.removeIncome(3);
         assertEquals(1, testExpenseTracker.getNumberOfIncome());
         assertEquals(income2, testExpenseTracker.getIncomeList().get(0));
+        assertTrue(remove2);
 
+
+        Boolean remove3 = testExpenseTracker.removeIncome(3);
+        assertEquals(1, testExpenseTracker.getNumberOfIncome());
+        assertEquals(income2, testExpenseTracker.getIncomeList().get(0));
+        assertFalse(remove3);
+
+        Boolean remove4 = testExpenseTracker.removeIncome(8);
+        assertEquals(1, testExpenseTracker.getNumberOfIncome());
+        assertEquals(income2, testExpenseTracker.getIncomeList().get(0));
+        assertFalse(remove4);
     }
 
 
