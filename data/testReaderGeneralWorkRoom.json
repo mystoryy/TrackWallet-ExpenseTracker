@@ -1,0 +1,32 @@
+{
+  "Income List": [
+    {
+      "Description": "testincome",
+      "Income ID": 8,
+      "Income Amount": 4000
+    },
+    {
+      "Description": "rental",
+      "Income ID": 5,
+      "Income Amount": 1000
+    }
+
+  ],
+  "Expenses List": [
+    {
+      "Expense ID": 20,
+      "Category": "food",
+      "Description": "test",
+      "Date": "2023-07-30",
+      "Expense Amount": 50
+    },
+    {
+      "Expense ID": 10,
+      "Category": "testcategory",
+      "Description": "testdescription",
+      "Date": "2023-07-20",
+      "Expense Amount": 25
+    }
+  ],
+  "name": "My Expense Tracker"
+}

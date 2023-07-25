@@ -1,0 +1,15 @@
+{
+    "Income List": [{
+        "Description": "ab",
+        "Income ID": 2,
+        "Income Amount": 1500
+    }],
+    "Expenses List": [{
+        "Expense ID": 1,
+        "Category": "test",
+        "Description": "test",
+        "Date": "2023-09-09",
+        "Expense Amount": 23.05
+    }],
+    "name": "J's Expense Tracker"
+}

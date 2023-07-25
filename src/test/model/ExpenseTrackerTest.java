@@ -16,7 +16,7 @@ public class ExpenseTrackerTest {
 
     @BeforeEach
     void runBefore() {
-        testExpenseTracker = new ExpenseTracker();
+        testExpenseTracker = new ExpenseTracker("TestET");
         income1 = new Income(2, 2000, "testIncome");
         income2 = new Income(4, 4000, "testIncome2");
         income3 = new Income(3, 1000, "testIncome3");

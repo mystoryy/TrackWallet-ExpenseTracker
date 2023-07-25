@@ -3,21 +3,31 @@ package ui;
 import model.ExpenseTracker;
 import model.Expenses;
 import model.Income;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
 //Expense Tracker Application
 //Modelled some methods and structure from Teller App repository provided in the course
-
+//Modelled code from JsonSerializationDemo repository given as resource for phase 2
 public class ExpenseTrackerApp {
+    private static final String JSON_STORE = "./data/ExpenseTracker.json";
     private ExpenseTracker expenseTracker;
     private double totalExpenditure;
     private double totalIncome;
+    private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
     private static Scanner sc = new Scanner(System.in);
 
-    //EFFECTS: runs the ExpenseTrackerApp
-    public ExpenseTrackerApp() {
-        expenseTracker = new ExpenseTracker();
+    //EFFECTS: constructs the expenseTracker and runs the application
+    public ExpenseTrackerApp() throws FileNotFoundException {
+        expenseTracker = new ExpenseTracker("J's Expense Tracker");
+        jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runExpenseTrackerApp();
     }
 
@@ -40,7 +50,6 @@ public class ExpenseTrackerApp {
 
     //MODIFIES: this
     //EFFECTS: navigates and processes the user input to do the functions
-
     public void navigator(String sc) {
         if (sc.equals("1")) {
             addIncome();
@@ -56,8 +65,12 @@ public class ExpenseTrackerApp {
             removeExpenses();
         } else if (sc.equals("7")) {
             viewCategoryWise();
-        } else if (sc.equals("s")) {
+        } else if (sc.equals("8")) {
             viewSavings();
+        } else if (sc.equals("s")) {
+            saveExpenseTracker();
+        } else if (sc.equals("l")) {
+            loadExpenseTracker();
         }
     }
 
@@ -71,14 +84,15 @@ public class ExpenseTrackerApp {
         System.out.println("Enter 5 to remove Income");
         System.out.println("Enter 6 to remove Expenses");
         System.out.println("Enter 7 to view category wise Expenses");
-        System.out.println("Enter s to view savings");
+        System.out.println("Enter 8 to view savings");
+        System.out.println("Enter s to save Expense Tracker");
+        System.out.println("Enter l to load Expense Tracker");
         System.out.println("Enter e to exit");
     }
 
 
     //MODIFIES: this,income list
     //EFFECTS: adds income with amount and description to the income list
-
     private void addIncome() {
         System.out.println("Enter income amount: ");
         double incomeAdd = sc.nextDouble();
@@ -91,10 +105,10 @@ public class ExpenseTrackerApp {
         System.out.println("Income is added successfully");
         System.out.println("\n\n");
     }
+
     //MODIFIES: this,expense list
     //EFFECTS: adds expenses with amount,date,category and description to the expense list and gives expenseID to each
     //         expense added to the list
-
     public void addExpenses() {
         System.out.println("Enter Expenses Amount : ");
         double expenseAmount = sc.nextDouble();
@@ -111,8 +125,8 @@ public class ExpenseTrackerApp {
         System.out.println("Expense added successfully \n\n");
 
     }
-    //EFFECTS: displays the list of Income to the user with total income
 
+    //EFFECTS: displays the list of Income to the user with total income
     private void viewIncome() {
 
         System.out.println("                                INCOME                                   ");
@@ -128,8 +142,7 @@ public class ExpenseTrackerApp {
         System.out.println("========================================================================\n");
     }
 
-    ////EFFECTS: displays the list of expense to the user with total expenses
-
+    //EFFECTS: displays the list of expense to the user with total expenses
     private void viewExpenses() {
 
         System.out.println(" \n                           EXPENSES                                ");
@@ -148,9 +161,9 @@ public class ExpenseTrackerApp {
         System.out.println("Total Expenditure: $" + formatExpense);
         System.out.println("======================================================================\n");
     }
+
     //MODIFIES: this,incomeList
     //EFFECTS: removes income with selected incomeID from the list of Incomes
-
     private void removeIncome() {
         System.out.println("Enter the index of income to delete: ");
         int incomeID = sc.nextInt();
@@ -162,9 +175,9 @@ public class ExpenseTrackerApp {
         }
 
     }
+
     //MODIFIES:this
     //EFFECTS: removes expense with selected expenseID from the list of expenses
-
     private void removeExpenses() {
         System.out.println("Enter the expense ID to delete: ");
         int id = sc.nextInt();
@@ -178,7 +191,6 @@ public class ExpenseTrackerApp {
 
     //MODIFIES: this
     //EFFECTS: displays the expenses with the preferred category in the expense list
-
     private void viewCategoryWise() {
         System.out.println("\n Enter the Category to view expenses in: ");
         String category = sc.next();
@@ -199,25 +211,24 @@ public class ExpenseTrackerApp {
 
     //MODIFIES: this
     //EFFECTS: gives total expenses by adding the expenses in the expense list
-
     private void viewTotalExpenditure() {
         this.totalExpenditure = 0;
         for (Expenses expenses : expenseTracker.getExpensesList()) {
             totalExpenditure += expenses.getAmount();
         }
     }
+
     //MODIFIES: this
     //EFFECTS: gives total income by adding the income in the income list
-
     private void viewTotalIncome() {
         this.totalIncome = 0;
         for (Income income : expenseTracker.getIncomeList()) {
             totalIncome += income.getIncomeAmount();
         }
     }
+
     //MODIFIES: this
     //EFFECTS: displays savings by deducting the amount of entered expenses from the income amount
-
     private void viewSavings() {
         viewTotalIncome();
         viewTotalExpenditure();
@@ -229,6 +240,30 @@ public class ExpenseTrackerApp {
         System.out.println("===============================\n");
     }
 
+
+
+    // EFFECTS: saves expenseTracker to file
+    private void saveExpenseTracker() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(expenseTracker);
+            jsonWriter.close();
+            System.out.println("Saved " + expenseTracker.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads expenseTracker from file
+    private void loadExpenseTracker() {
+        try {
+            expenseTracker = jsonReader.read();
+            System.out.println("Loaded " + expenseTracker.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
 
 

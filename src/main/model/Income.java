@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents an income with an ID, description  and amount(in dollars)
-public class Income {
+public class Income implements Writable {
     private double incomeAmount;
     private int incomeID;
     private String description;
@@ -24,6 +27,15 @@ public class Income {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Income ID", incomeID);
+        json.put("Income Amount", incomeAmount);
+        json.put("Description", description);
+        return json;
     }
 }
 
