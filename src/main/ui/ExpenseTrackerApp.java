@@ -10,9 +10,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-//Expense Tracker Application
 //Modelled some methods and structure from Teller App repository provided in the course
 //Modelled code from JsonSerializationDemo repository given as resource for phase 2
+//Expense Tracker Application
 public class ExpenseTrackerApp {
     private static final String JSON_STORE = "./data/ExpenseTracker.json";
     private ExpenseTracker expenseTracker;
@@ -34,7 +34,7 @@ public class ExpenseTrackerApp {
     //MODIFIES: this
     //EFFECTS: processes user input
     public void runExpenseTrackerApp() {
-        System.out.println("Welcome to the Expense Tracker App \n");
+        System.out.println("Welcome to Expense Tracker ! \nTrack-Save-Repeat.\n");
         String input = "none";
         while (!input.equals("e")) {
             printMenu();
@@ -42,7 +42,7 @@ public class ExpenseTrackerApp {
             navigator(input);
         }
         if (input.equals("e")) {
-            System.out.println("\nBye-Bye");
+            System.out.println("\nYour savings are waiting for spending!\nSee you soon!!");
             System.exit(0);
 
         }
@@ -192,6 +192,7 @@ public class ExpenseTrackerApp {
     //MODIFIES: this
     //EFFECTS: displays the expenses with the preferred category in the expense list
     private void viewCategoryWise() {
+        double totalSpending = 0;
         System.out.println("\n Enter the Category to view expenses in: ");
         String category = sc.next();
         System.out.println("\n===============Expenses for " + category + " Category==============");
@@ -201,10 +202,15 @@ public class ExpenseTrackerApp {
                         + "Date: " + expense.getDate()
                         + "\n" + "Category: " + expense.getCategory() + "\n" + "Description: " + expense.getDecription()
                         + "\n");
+                totalSpending += expense.getAmount();
 
             }
 
         }
+        String formatExpense = String.format("%.2f", totalSpending);
+
+
+        System.out.println("Total Expenditure: $" + formatExpense);
         System.out.println("====================================================\n");
 
     }
@@ -239,7 +245,6 @@ public class ExpenseTrackerApp {
         System.out.println("Your Savings Are: " + "$" + formatIncome + "\n");
         System.out.println("===============================\n");
     }
-
 
 
     // EFFECTS: saves expenseTracker to file

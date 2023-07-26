@@ -13,8 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-// Represents a reader that reads ExpenseTracker from JSON data stored in file
 //Modelled code from JsonSerializationDemo repository given as resource for phase 2
+// Represents a reader that reads ExpenseTracker from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -80,7 +80,7 @@ public class JsonReader {
         String date = jsonObject.getString("Date");
         String category = jsonObject.getString("Category");
         String description = jsonObject.getString("Description");
-        Expenses expense = new Expenses(expenseID, amount,date,category,description);
+        Expenses expense = new Expenses(expenseID, amount, date, category, description);
         et.addExpenses(expense);
     }
 
@@ -90,13 +90,9 @@ public class JsonReader {
         int incomeID = jsonObject.getInt("Income ID");
         double incomeAmount = jsonObject.getDouble("Income Amount");
         String description = jsonObject.getString("Description");
-        Income income = new Income(incomeID,incomeAmount,description);
+        Income income = new Income(incomeID, incomeAmount, description);
         et.addIncome(income);
     }
-
-
-
-
 
 
 }

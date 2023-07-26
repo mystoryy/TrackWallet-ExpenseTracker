@@ -3,7 +3,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-//Represents an expense with an ID,date, decription ,category and amount(in dollars)
+//Represents an expense with an ID,date, description ,category and amount(in dollars)
 public class Expenses implements Writable {
 
     private int expenseId;
@@ -13,7 +13,7 @@ public class Expenses implements Writable {
     private String decription;
 
 
-    //EFFECTS: constructs an expense with an ID,date, decription ,category and amount
+    //EFFECTS: constructs an expense with an ID,date, description ,category and amount
     public Expenses(int expenseId, double amount, String date, String category, String description) {
         this.expenseId = expenseId;
         this.amount = amount;
@@ -47,11 +47,11 @@ public class Expenses implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Expense ID",expenseId);
-        json.put("Expense Amount",amount);
-        json.put("Date",date);
-        json.put("Category",category);
-        json.put("Description",decription);
+        json.put("Expense ID", expenseId);
+        json.put("Expense Amount", amount);
+        json.put("Date", date);
+        json.put("Category", category);
+        json.put("Description", decription);
         return json;
     }
 

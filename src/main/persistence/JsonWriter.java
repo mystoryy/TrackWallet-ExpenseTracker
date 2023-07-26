@@ -7,10 +7,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-//Represents a writer that writes Json representation of ExpenseTracker to file
 //Modelled code from JsonSerializationDemo repository given as resource for phase 2
+//Represents a writer that writes Json representation of ExpenseTracker to file
 public class JsonWriter {
-    private static final  int TAB = 4;
+    private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
 
