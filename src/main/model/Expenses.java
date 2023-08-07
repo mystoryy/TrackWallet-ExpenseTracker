@@ -44,6 +44,7 @@ public class Expenses implements Writable {
         return decription;
     }
 
+    //todo comments
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

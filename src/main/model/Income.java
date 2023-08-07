@@ -29,6 +29,8 @@ public class Income implements Writable {
         return description;
     }
 
+
+    //todo comments
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

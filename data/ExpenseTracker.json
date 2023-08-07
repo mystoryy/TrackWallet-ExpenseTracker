@@ -1,38 +1,53 @@
 {
     "Income List": [
         {
-            "Description": "test",
+            "Description": "kh ",
             "Income ID": 1,
-            "Income Amount": 3400
+            "Income Amount": 100
         },
         {
-            "Description": "salary",
+            "Description": "kjb",
+            "Income ID": 2,
+            "Income Amount": 32
+        },
+        {
+            "Description": "kh",
             "Income ID": 3,
-            "Income Amount": 7000
+            "Income Amount": 98
+        },
+        {
+            "Description": "khjgj",
+            "Income ID": 4,
+            "Income Amount": 987
+        },
+        {
+            "Description": "testIncome",
+            "Income ID": 5,
+            "Income Amount": 5000
         }
     ],
     "Expenses List": [
         {
             "Expense ID": 1,
             "Category": "food",
-            "Description": "food",
-            "Date": "2023-03-03",
-            "Expense Amount": 34.32
+            "Description": "Ramen",
+            "Date": "23-07-23",
+            "Expense Amount": 23
         },
         {
             "Expense ID": 2,
-            "Category": "food",
-            "Description": "icecream",
-            "Date": "2023-07-07",
-            "Expense Amount": 15
+            "Category": "bills",
+            "Description": "phone plan",
+            "Date": "30-07-23",
+            "Expense Amount": 56
         },
         {
             "Expense ID": 3,
-            "Category": "test",
-            "Description": "t",
-            "Date": "2009-09-09",
-            "Expense Amount": 300
+            "Category": "bills",
+            "Description": "insurance",
+            "Date": "23-07-23",
+            "Expense Amount": 75
         }
     ],
-    "name": "J's Expense Tracker"
+    "name": "Track Wallet"
 }
