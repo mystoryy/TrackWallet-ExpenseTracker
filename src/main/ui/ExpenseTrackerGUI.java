@@ -26,8 +26,6 @@ public class ExpenseTrackerGUI extends JFrame {
     private JPanel rightpanel;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
-    private ViewPanel viewPanel;
-    private ViewIncomePanel incomePanel;
 
 
     //MODIFIES: this
@@ -38,7 +36,7 @@ public class ExpenseTrackerGUI extends JFrame {
         expenseTracker = new ExpenseTracker("Track Wallet");
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
-        incomePanel = new ViewIncomePanel(expenseTracker);
+//        incomePanel = new ViewIncomePanel(expenseTracker);
 
         setSize(WIDTH, HEIGHT);
         setVisible(true);
