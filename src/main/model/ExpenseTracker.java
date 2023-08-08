@@ -81,6 +81,7 @@ public class ExpenseTracker implements Writable {
         return false;
     }
 
+    //EFFECTS:returns JSON object representation of fields in Expense Tracker
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

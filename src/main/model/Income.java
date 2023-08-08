@@ -30,7 +30,7 @@ public class Income implements Writable {
     }
 
 
-    //todo comments
+    //EFFECTS: returns JSON object representation of the income Object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

@@ -1,52 +1,68 @@
 {
     "Income List": [
         {
-            "Description": "kh ",
+            "Description": "salary",
             "Income ID": 1,
-            "Income Amount": 100
-        },
-        {
-            "Description": "kjb",
-            "Income ID": 2,
-            "Income Amount": 32
-        },
-        {
-            "Description": "kh",
-            "Income ID": 3,
-            "Income Amount": 98
-        },
-        {
-            "Description": "khjgj",
-            "Income ID": 4,
-            "Income Amount": 987
-        },
-        {
-            "Description": "testIncome",
-            "Income ID": 5,
             "Income Amount": 5000
+        },
+        {
+            "Description": "tax credit",
+            "Income ID": 2,
+            "Income Amount": 350
+        },
+        {
+            "Description": "business",
+            "Income ID": 4,
+            "Income Amount": 6735
+        },
+        {
+            "Description": "test income",
+            "Income ID": 5,
+            "Income Amount": 457
         }
     ],
     "Expenses List": [
         {
             "Expense ID": 1,
-            "Category": "food",
-            "Description": "Ramen",
-            "Date": "23-07-23",
-            "Expense Amount": 23
+            "Category": "bills",
+            "Description": "rent",
+            "Date": "01-08-23",
+            "Expense Amount": 1000
         },
         {
             "Expense ID": 2,
-            "Category": "bills",
-            "Description": "phone plan",
-            "Date": "30-07-23",
-            "Expense Amount": 56
+            "Category": "food",
+            "Description": "ramen",
+            "Date": "07-08-23",
+            "Expense Amount": 18.75
         },
         {
             "Expense ID": 3,
+            "Category": "food",
+            "Description": "cookie",
+            "Date": "06-08-23",
+            "Expense Amount": 3.15
+        },
+        {
+            "Expense ID": 4,
             "Category": "bills",
-            "Description": "insurance",
-            "Date": "23-07-23",
-            "Expense Amount": 75
+            "Description": "phone plan",
+            "Date": "22-07-23",
+            "Expense Amount": 60
+        },
+        {
+            "Expense ID": 6,
+            "Category": "food",
+            "Description": "smoothie",
+            "Date": "06-05-23",
+            "Expense Amount": 9.7
+        },
+        {
+            "Expense ID": 7,
+            "Category": "food",
+            "Description": "pizza",
+            "Date": "07-08-23",
+            "Expense Amount": 8
         }
     ],
     "name": "Track Wallet"
