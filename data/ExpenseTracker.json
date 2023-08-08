@@ -19,6 +19,11 @@
             "Description": "test income",
             "Income ID": 5,
             "Income Amount": 457
+        },
+        {
+            "Description": "freelance salary",
+            "Income ID": 6,
+            "Income Amount": 2000
         }
     ],
     "Expenses List": [

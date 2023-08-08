@@ -316,7 +316,7 @@ public class ExpenseTrackerGUI extends JFrame {
         leftpanel.add(removeExpense);
     }
 
-    //MODIFIES:this,expenseslist
+    //MODIFIES:this,expensesList
     //EFFECTS:removes an expense with the given ID from the expense Tracker else gives a message to enter valid ID
     public void removeExpense() {
         String expenseIDString = JOptionPane.showInputDialog("Enter the expense ID to remove: ");
@@ -358,7 +358,7 @@ public class ExpenseTrackerGUI extends JFrame {
         leftpanel.add(removeIncome);
     }
 
-    //MODIFIES:this,incomelist
+    //MODIFIES:this,incomeList
     //EFFECTS:removes an income with the given ID from the expense Tracker else gives a message to enter valid ID
     public void removeIncome() {
         String incomeIDString = JOptionPane.showInputDialog("Enter the Income ID to remove: ");

@@ -26,3 +26,22 @@ make informed financial decisions and contribute to stability.
 - As a user, I want to be able to load my expense and income list when I select the load data option
 
 
+## Instructions for Grader
+- You can generate the first required action related to adding Xs to a Y by clicking the "Add Income" button on the left
+  side of the application window.Fill in the details in the fields and  click add income below to complete.
+- You can also generate the action related to adding Xs to Y by clicking "Add Expense" button on the left side.
+- You can generate the second required action related to adding Xs to Y by clicking on "View Category Expenses" button.
+ You can enter a category for which you can see all the expenses with the same category that were added to the list.
+- You can locate my visual component as soon as the application is run.An image is displayed beside the title in starting
+ panel.You can also find more images displayed in all the four add income/expense,view income/expense buttons when they are clicked
+- You can save the state of my application by clicking on "Quit"
+ button and then selecting "yes" option in the pop-up window.
+- You can reload the state of my application by clicking on the "Load" button on the left side.
+
+- You can also generate another action related to adding Xs to Y by clicking on "Remove Income/Expense" buttons where you can 
+input an expense ID/income ID to delete the corresponding entry from the list
+- You can also view the balance amount remaining by clicking "View Balance" which shows the balance money in a pop-up window
+
+
+
+

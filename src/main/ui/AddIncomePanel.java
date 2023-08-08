@@ -22,6 +22,7 @@ public class AddIncomePanel extends JPanel {
         setupComponents();
     }
 
+    //MODIFIES: this
     //EFFECTS: sets the layout of the panel
     private void setupLayout() {
         setLayout(new GridBagLayout());
@@ -33,6 +34,7 @@ public class AddIncomePanel extends JPanel {
 
     }
 
+    //MODIFIES: this
     //EFFECTS: sets the components including labels and text area for income details
     private void setupComponents() {
         JLabel amountLabel = new JLabel("Income Amount");
@@ -94,8 +96,9 @@ public class AddIncomePanel extends JPanel {
         add(component, gbc);
     }
 
-    //MODIFIES: this,incomelist
-    //EFFECTS: Adds an income object to the income list in expense tracker with given details
+    //MODIFIES: this,incomeList
+    //EFFECTS: Adds an income object to the income list in expense tracker with given details otherwise prompts user to
+    //input valid details
     public void addIncomegui() {
         try {
             double incomeamt = Double.parseDouble(amount.getText());

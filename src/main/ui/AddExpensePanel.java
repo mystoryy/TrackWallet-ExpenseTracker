@@ -25,6 +25,7 @@ public class AddExpensePanel extends JPanel {
         setupComponents();
     }
 
+    //MODIFIES: this
     //EFFECTS: sets the layout of the panel
     private void setupLayout() {
         setLayout(new GridBagLayout());
@@ -35,7 +36,7 @@ public class AddExpensePanel extends JPanel {
         gbc.gridwidth = 1;
     }
 
-
+    //MODIFIES: this
     //EFFECTS: sets the components including labels and text area for expense details
     private void setupComponents() {
         JLabel amountLabel = new JLabel("Expense Amount");
@@ -60,6 +61,7 @@ public class AddExpensePanel extends JPanel {
 
     }
 
+    //MODIFIES: this
     //EFFECTS: sets up the add expense button in the panel along with actionlistener to handle addition of expenses
     private void setupAddButton() {
         JButton addbutton = new JButton("Add Expense");
@@ -110,8 +112,9 @@ public class AddExpensePanel extends JPanel {
         add(imglabel, gbcimg);
     }
 
-    //MODIFIES: this,expenselist
-    //EFFECTS: Adds an expense object to the expenses list in expense tracker with given details
+    //MODIFIES: this,expenseList
+    //EFFECTS: Adds an expense object to the expenses list in expense tracker with given details otherwise prompts user
+    // to input valid details
     private void addExpensegui() {
         try {
             double expenseamt = Double.parseDouble(expenseamount.getText());
