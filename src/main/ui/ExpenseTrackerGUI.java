@@ -460,8 +460,8 @@ public class ExpenseTrackerGUI extends JFrame {
         categorytextArea.setText(categoryDisplay.toString());
         JScrollPane scrollPane = new JScrollPane(categorytextArea);
         JPanel categorypanel = new JPanel(new BorderLayout());
-        categorypanel.add(scrollPane,BorderLayout.CENTER);
-        return  categorypanel;
+        categorypanel.add(scrollPane, BorderLayout.CENTER);
+        return categorypanel;
     }
 
 
