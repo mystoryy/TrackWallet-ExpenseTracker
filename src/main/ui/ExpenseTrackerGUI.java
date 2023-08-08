@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//Modelled some code from AlarmSystem repository given in lecture- "https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git"
 //Expense Tracker Graphic Application and represents the main frame of gui
 public class ExpenseTrackerGUI extends JFrame {
     public static final int WIDTH = 1000;
@@ -88,7 +89,7 @@ public class ExpenseTrackerGUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: adds buttons to the left panel of the JFrame
     private void addButtonPanel() {
-        leftpanel.setLayout(new GridLayout(9, 1));
+        leftpanel.setLayout(new GridLayout(10, 1));
         addButton("Add Income", new AddIncomePanel(expenseTracker));
         addButton("Add Expense", new AddExpensePanel(expenseTracker));
         JButton viewincomebutton = new JButton("View Income");
@@ -103,6 +104,7 @@ public class ExpenseTrackerGUI extends JFrame {
         viewExpenseButton();
         removeExpenseButton();
         removeIncomeButton();
+        viewCategoryButton();
         savingsButton();
         loadButton();
         quitButton();
@@ -314,7 +316,7 @@ public class ExpenseTrackerGUI extends JFrame {
         leftpanel.add(removeExpense);
     }
 
-    //MODIFIES:this,expenselist
+    //MODIFIES:this,expenseslist
     //EFFECTS:removes an expense with the given ID from the expense Tracker else gives a message to enter valid ID
     public void removeExpense() {
         String expenseIDString = JOptionPane.showInputDialog("Enter the expense ID to remove: ");
@@ -416,6 +418,50 @@ public class ExpenseTrackerGUI extends JFrame {
         String formatSavings = String.format("%.2f", savings);
         JOptionPane.showMessageDialog(this, "The amount in your wallet after your "
                 + "expenditure is: $ " + formatSavings, "Balance", JOptionPane.YES_OPTION);
+    }
+
+
+    //MODIFIES:this
+    //EFFECTS: creates a view category wise expenses button with an action listener in the left panel
+    public void viewCategoryButton() {
+        JButton expensecategorybutton = new JButton("View Category Expenses");
+        expensecategorybutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showPanel(viewCategorywisePanel());
+            }
+        });
+        leftpanel.add(expensecategorybutton);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: returns a JPanel displaying all the expenses in the expenseTracker with total spending for a particular
+    // user selected category
+    public JPanel viewCategorywisePanel() {
+        String category = JOptionPane.showInputDialog("Enter the Category to view expenses in: ");
+        JTextArea categorytextArea = new JTextArea();
+        categorytextArea.setEditable(false);
+
+        StringBuilder categoryDisplay = new StringBuilder();
+        categoryDisplay.append("Expenses for " + category + " Category: \n");
+
+        double totalSpending = 0;
+        for (Expenses expense : expenseTracker.getExpensesList()) {
+            if (expense.getCategory().equalsIgnoreCase(category)) {
+                categoryDisplay.append("\n\nExpense ID: ").append(expense.getId()).append("\n")
+                        .append("Amount: $").append(expense.getAmount()).append("\n").append("Date: ")
+                        .append(expense.getDate()).append("\n").append("Category: ").append(expense.getCategory())
+                        .append("\n").append("Description: ").append(expense.getDecription()).append("\n");
+                totalSpending += expense.getAmount();
+            }
+        }
+
+        categoryDisplay.append("\nTotal Expense: $").append(String.format("%.2f", totalSpending)).append("\n\n");
+        categorytextArea.setText(categoryDisplay.toString());
+        JScrollPane scrollPane = new JScrollPane(categorytextArea);
+        JPanel categorypanel = new JPanel(new BorderLayout());
+        categorypanel.add(scrollPane,BorderLayout.CENTER);
+        return  categorypanel;
     }
 
 
