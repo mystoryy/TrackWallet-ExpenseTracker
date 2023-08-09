@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.ExpenseTracker;
 import model.Expenses;
 import model.Income;
@@ -96,8 +98,8 @@ public class ExpenseTrackerGUI extends JFrame {
         viewincomebutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewIncome();
-                showPanel(viewIncome());
+                JPanel incomepanel = viewIncome();
+                showPanel(incomepanel);
             }
         });
         leftpanel.add(viewincomebutton);
@@ -150,8 +152,8 @@ public class ExpenseTrackerGUI extends JFrame {
         viewExpenseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                viewExpense();
-                showPanel(viewExpense());
+                JPanel expensepanel = viewExpense();
+                showPanel(expensepanel);
             }
         });
         leftpanel.add(viewExpenseButton);
@@ -293,14 +295,24 @@ public class ExpenseTrackerGUI extends JFrame {
 
                 if (response == JOptionPane.YES_OPTION) {
                     saveDataToFile();
+                    printEventlog();
                     System.exit(0);
                 } else if (response == JOptionPane.NO_OPTION) {
+                    printEventlog();
                     System.exit(0);
                 }
 
             }
         });
         leftpanel.add(quitbutton);
+    }
+
+    //EFFECTS: prints the log of events occurred to console
+    public void printEventlog() {
+        for (Event nextevent : EventLog.getInstance()) {
+            System.out.println(nextevent.toString() + "\n");
+        }
+
     }
 
     //MODIFIES:this
@@ -323,15 +335,9 @@ public class ExpenseTrackerGUI extends JFrame {
         if (expenseIDString != null && !expenseIDString.trim().isEmpty()) {
             try {
                 int expenseID = Integer.parseInt(expenseIDString);
-                boolean found = false;
-                for (int i = 0; i < expenseTracker.getExpensesList().size(); i++) {
-                    if (expenseTracker.getExpensesList().get(i).getId() == expenseID) {
-                        expenseTracker.getExpensesList().remove(i);
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
+                boolean removed = expenseTracker.removeExpense(expenseID);
+
+                if (removed) {
                     JOptionPane.showMessageDialog(this, "Expense Removed Successfully");
                 } else {
                     JOptionPane.showMessageDialog(this, "Expense ID not found");
@@ -340,7 +346,6 @@ public class ExpenseTrackerGUI extends JFrame {
             } catch (NumberFormatException n) {
                 JOptionPane.showMessageDialog(this, "Enter a valid ID");
             }
-
 
         }
     }
@@ -365,15 +370,9 @@ public class ExpenseTrackerGUI extends JFrame {
         if (incomeIDString != null && !incomeIDString.trim().isEmpty()) {
             try {
                 int incomeID = Integer.parseInt(incomeIDString);
-                boolean found = false;
-                for (int i = 0; i < expenseTracker.getIncomeList().size(); i++) {
-                    if (expenseTracker.getIncomeList().get(i).getIncomeID() == incomeID) {
-                        expenseTracker.getIncomeList().remove(i);
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
+                boolean removed = expenseTracker.removeIncome(incomeID);
+
+                if (removed) {
                     JOptionPane.showMessageDialog(this, "Income Removed Successfully");
                 } else {
                     JOptionPane.showMessageDialog(this, "Income ID not found");
@@ -386,6 +385,7 @@ public class ExpenseTrackerGUI extends JFrame {
 
         }
     }
+
 
     //MODIFIES:this
     //EFFECTS: creates a button to view savings(balance)

@@ -37,12 +37,19 @@ public class ExpenseTracker implements Writable {
     //EFFECTS:adds income to the income list
     public void addIncome(Income i) {
         incomeList.add(i);
+        EventLog.getInstance().logEvent(new Event("An Income Added: ID- " + i.getIncomeID() + " with description- "
+                + i.getDescription()));
+
     }
 
     //MODIFIES: this
     //EFFECTS:adds expense to the expense list
     public void addExpenses(Expenses e) {
         expensesList.add(e);
+        EventLog.getInstance().logEvent(new Event("An Expense Added: ID- " + e.getId() + " in "
+                + e.getCategory() + " category"));
+
+
     }
 
     //EFFECTS: gives the size of the expense list providing the number of expenses added
@@ -59,27 +66,30 @@ public class ExpenseTracker implements Writable {
     //EFFECTS: removes the expense with the given expense id from the expense list and returns true if removed from list
     //         false otherwise
     public boolean removeExpense(int id) {
-        for (Expenses expense : expensesList) {
-            if (expense.getId() == id) {
-                expensesList.remove(expense);
+        for (int i = 0; i < expensesList.size(); i++) {
+            if (expensesList.get(i).getId() == id) {
+                expensesList.remove(i);
+                EventLog.getInstance().logEvent(new Event("An Expense with ID: " + id + " removed"));
                 return true;
             }
         }
         return false;
     }
 
-    //MODIFIES: this,incomelist
+    //MODIFIES: this,incomeList
     //EFFECTS: removes the income with the given income ID from the income list and returns true if removed from list
     //         false otherwise
     public boolean removeIncome(int id) {
-        for (Income income : incomeList) {
-            if (income.getIncomeID() == id) {
-                incomeList.remove(income);
+        for (int i = 0; i < incomeList.size(); i++) {
+            if (incomeList.get(i).getIncomeID() == id) {
+                incomeList.remove(i);
+                EventLog.getInstance().logEvent(new Event("An Income with ID: " + id + " removed"));
                 return true;
             }
         }
         return false;
     }
+
 
     //EFFECTS:returns JSON object representation of fields in Expense Tracker
     @Override
@@ -102,7 +112,7 @@ public class ExpenseTracker implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns income in this expenseTracke as a JSON array
+    // EFFECTS: returns income in this expenseTracker as a JSON array
     private JSONArray incomeToJson() {
         JSONArray jsonArray = new JSONArray();
 
