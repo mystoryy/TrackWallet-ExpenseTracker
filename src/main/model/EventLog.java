@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-//Code from AlarmSystem repository given in lecture- "https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git"
 //Represents a log of expense tracker events.There is only one eventlog and system has global access to a single
 // instance of eventLog
 public class EventLog implements Iterable<Event> {

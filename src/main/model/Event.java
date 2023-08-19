@@ -3,7 +3,6 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 
-//Code from AlarmSystem repository given in lecture- "https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git"
 //Represents an expense tracker event
 public class Event {
 

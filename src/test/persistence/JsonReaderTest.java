@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-//Modelled tests from JsonSerializationDemo repository given as resource for phase 2
+
 public class JsonReaderTest extends JsonTest {
 
     @Test

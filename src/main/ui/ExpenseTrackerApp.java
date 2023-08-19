@@ -10,9 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-//Modelled some methods and structure from Teller App repository provided in the course
-//Modelled code from JsonSerializationDemo repository given as resource for phase 2
-//Expense Tracker Application
+//Expense Tracker Console Application
 public class ExpenseTrackerApp {
     private static final String JSON_STORE = "./data/ExpenseTracker.json";
     private ExpenseTracker expenseTracker;

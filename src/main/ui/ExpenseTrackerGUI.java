@@ -16,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//Modelled some code from AlarmSystem repository given in lecture- "https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git"
 //Expense Tracker Graphic Application and represents the main frame of gui
 public class ExpenseTrackerGUI extends JFrame {
     public static final int WIDTH = 1000;

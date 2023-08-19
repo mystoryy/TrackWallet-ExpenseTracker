@@ -5,7 +5,7 @@ import model.Income;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//Modelled tests from JsonSerializationDemo repository given as resource for phase 2
+
 public class JsonTest {
 
     protected void checkIncome(int incomeId, double income, String description, Income testincome) {
